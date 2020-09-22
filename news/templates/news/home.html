@@ -1,0 +1,38 @@
+{% extends "news/base.html" %} {% block title %}NEWS BOARD{% endblock %}
+<!-- -----------------------MAIN CONTAINER----------------------- -->
+{% block content %}
+<!-- -----------------------POSTS----------------------- -->
+{% for post in posts %}
+<div class="card mb-5 shadow tr hover">
+  <div class="card-body">
+    <h3 class="card-title text-dark">{{ post.post_header }}</h3>
+    <h6 class="card-subtitle mb-3 text-muted">{{ post.post_author }}</h6>
+    <p class="card-text text-dark">{{ post.post_text }}</p>
+    <div class="d-flex">
+      <a href="{% url 'show_comments' post.id %}" class="btn btn-info"
+        >Комментарии</a
+      >
+      <a
+        href="{% url 'del_post' post.id page counter%}"
+        class="btn btn-danger ml-auto"
+        >Удалить</a
+      >
+    </div>
+  </div>
+  <div class="d-flex mb-3">
+    <small class="mx-auto text-muted">{{ post.post_date }}</small>
+  </div>
+</div>
+{% endfor %}
+<div class="d-flex justify-content-center mb-5">
+  {% if page > 1 %}
+  <a href="{% url 'home' prev_page prev_counter %}" class="btn btn-info">
+    Назад
+  </a>
+  {% endif %} {% if page < pages %}
+  <a href="{% url 'home' next_page next_counter %}" class="btn btn-info"
+    >Вперед
+  </a>
+  {% endif %}
+</div>
+{% endblock %}

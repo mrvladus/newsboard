@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'news/css/bootstrap.css' %}" />
+    {% block scripts %} {% endblock %}
+  </head>
+  <style>
+    .gr {
+      background-image: linear-gradient(to right, #83a4d4, #b6fbff);
+      background-attachment: fixed;
+    }
+    .tr {
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .hover {
+      transition: transform 0.3s ease;
+    }
+    .hover:hover {
+      transform: scale(1.03);
+    }
+    .fade {
+      animation: fade 1.5s ease forwards;
+    }
+    @keyframes fade {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <body class="bg-light gr">
+    <nav class="navbar navbar-light mb-5 shadow-sm tr">
+      <a class="navbar-brand text-dark" href="{% url 'index' %}">NEWS BOARD</a>
+      <!-- <div>
+        <a href="#" class="btn btn-info">Новый пост</a>
+        <a href="#" class="btn btn-outline-info">Вход</a>
+        <a href="#" class="btn btn-outline-secondary">Регистрация</a>
+      </div> -->
+    </nav>
+    <div class="container min-vh-100 fade">
+      {% block content %} {% endblock %}
+    </div>
+    <footer class="tr mt-5">
+      <div class="container d-flex">
+        <p class="text-dark mx-auto pt-3">Krupinskiy Vlad</p>
+      </div>
+    </footer>
+  </body>
+</html>
